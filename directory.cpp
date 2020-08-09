@@ -205,10 +205,9 @@ main() {
     }
     while ((de = readdir(dr)) != NULL){
 //        printf("File Name: %s\n", de->d_name);
-        long type = de->d_type;
+//        long type = de->d_type;
 //        printf("File Type: %s (%ld)\n\n\n", type == 0 ? "File" : "Directory", type);
-        if(!type){
-            ull size = fileSize(de->d_name);
+        ull size = fileSize(de->d_name);
 //            printf("File Size: %llu\n", size);
             string type = fileType(de -> d_name);
 //            cout<<"File Type: "<<type<<endl;
@@ -220,7 +219,6 @@ main() {
             }
 //            cout<<"\n\n\n";
             detailes.push_back(Detail(de -> d_name, type, size, hash, isVideo));
-        }
     }
 //
 //    cout<<"\n\n\n\n\n\n\n\n\n";
