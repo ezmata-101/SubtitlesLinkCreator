@@ -29,18 +29,18 @@ public:
         printf("File Name: %s\n", fileName.c_str());
         printf("Type: %s\n", type.c_str());
         printf("Size: %llu\n", size);
-        printf("Hash: %16I64x\n\n", hash);
+        printf("Hash: %16llx\n\n", hash);
     }
 };
 
-addToHtml(int pos, Detail d){
+void addToHtml(int pos, Detail d){
     printf("<p>\n");
     printf("%d. ", pos);
     printf("%s <br>\n", d.fileName.c_str());
 //    printf("File Size: %llu byte<br>\n", ceil(d.size/8.0));
 //    printf("File Hash: %16I64x<br>\n", d.hash);
-    printf("Download Link 1: <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-all/moviehash-%16I64x\">All Language</a> <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-eng/moviehash-%16I64x\">English</a> (With hash only)<br>\n", d.hash, d.hash);
-    printf("Download Link 2: <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-all/moviebytesize-%I64d/moviehash-%16I64x\">All Language</a> <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-eng/moviebytesize-%I64d/moviehash-%16I64x\">English</a>(With hash and Size)<br>\n", d.size, d.hash, d.size, d.hash);
+    printf("Download Link 1: <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-all/moviehash-%16llx\">All Language</a> <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-eng/moviehash-%16llx\">English</a> (With hash only)<br>\n", d.hash, d.hash);
+    printf("Download Link 2: <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-all/moviebytesize-%lld/moviehash-%16llx\">All Language</a> <a href = \"https://www.opensubtitles.org/en/search/sublanguageid-eng/moviebytesize-%lld/moviehash-%16llx\">English</a>(With hash and Size)<br>\n", d.size, d.hash, d.size, d.hash);
     printf("</p>");
 }
 
@@ -137,7 +137,7 @@ bool isVideoFile(const string file_name){
     }else return false;
 }
 
-createHTML(string path){
+void createHTML(string path){
     freopen("SubtitleLink.html", "w", stdout);
     printf("<html>\n");
     printf("<head>\n");
@@ -147,7 +147,7 @@ createHTML(string path){
     printf("<h1>Subtitles</h1>\n");
     printf("<p>Directory: %s</p>\n", path.c_str());
 }
-endHTML(){
+void endHTML(){
     printf("<br><br><br><br>");
     printf("<p>");
     printf("Powerd By: ");
@@ -192,7 +192,7 @@ ull calculateHash(char file_name[]){
 
 
 
-main() {
+int main() {
 //   cout << get_current_dir() << endl;
    struct dirent *de;
    DIR *dr = opendir(".");
